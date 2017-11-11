@@ -15,3 +15,5 @@ Then run the project with:
 ## Built with
 
 The project was started with `create-react-app`.
+
+For more information see the Create React App Readme [here](README-react.md).
