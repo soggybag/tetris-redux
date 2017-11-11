@@ -8,6 +8,7 @@ import './App.css'
 import GridBoard from './components/grid-board'
 import Controls from './components/controls'
 import NextBlock from './components/next-block'
+import ScoreBoard from './components/score-board'
 
 const store = createStore(reducers)
 
@@ -19,6 +20,7 @@ class App extends Component {
           <GridBoard />
           <Controls />
           <NextBlock />
+          <ScoreBoard />
         </div>
       </Provider>
     );

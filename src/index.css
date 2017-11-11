@@ -58,3 +58,14 @@ body {
   left: calc((20px + 2px) * 13);
   top: 0;
 }
+
+.score-board {
+  position: absolute;
+  right: calc((20px + 2px) * 13);
+  top: 0;
+  width: calc((20px + 2px) * 4);
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
