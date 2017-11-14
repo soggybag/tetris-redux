@@ -9,6 +9,13 @@ class ScoreBoard extends Component {
         <div>Title</div>
         <div>Score: 000</div>
         <div>Level: 000</div>
+        <button>Pause</button>
+        <button>Start</button>
+        <div>
+          <div>Next block</div>
+          <div>shape: {this.props.nextBlock.shape}</div>
+          <div>rotation: {this.props.nextBlock.rotation}</div>
+        </div>
       </div>
     )
   }
@@ -16,7 +23,7 @@ class ScoreBoard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    nextBlock: state.nextBlock
   }
 }
 

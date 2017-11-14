@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { shapes, getShape } from '../utils/shapes'
+import { getColor } from '../utils/colors'
 
 import GridSquare from './grid-square'
 
 class NextBlock extends Component {
 
   makeGrid() {
-    return this.props.nextBlock.map((rowArray, row) => {
-      return <div key={row} className="grid-row">{rowArray.map((square, col) => {
-        return <GridSquare key={col} />
-      })}</div>
-    })
-  }
+    const { shape, rotation } = this.props.nextBlock
+    const block = getShape(shape)[rotation]
+    const color = getColor(shape)
+    console.log(color, shape);
+    const box = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+
+    return box.map((rowArray, row) => {
+      return rowArray.map((square, col) => {
+        const blockColor = block[row][col] === 0 ? '#fff' : color
+        return <GridSquare key={col} color={blockColor} />
+      })})
+    }
 
   render () {
+
     return (
       <div className="next-block">
         {this.makeGrid()}

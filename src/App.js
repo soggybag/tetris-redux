@@ -16,7 +16,9 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
+
         <div className="app">
+          <h1>Turbo Umbrella</h1>
           <GridBoard />
           <Controls />
           <NextBlock />

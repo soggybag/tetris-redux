@@ -1,3 +1,5 @@
+* { box-sizing: border-box; }
+
 body, html {
   height: 100%;
 }
@@ -9,26 +11,14 @@ body {
 }
 
 .app {
-  width: calc((20px + 1px * 2) * 12);
+  width: calc((20px + 0px * 2) * 12);
   margin: auto;
   position: relative;
 }
 
 .grid-board {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: col;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  height: 100%;
-
-}
-
-.grid-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .grid-square {
@@ -37,31 +27,34 @@ body {
   border: 1px solid #ccc;
   margin: 0px;
   border-radius: 3px;
+  display: inline-block;
+  text-align: center;
 }
 
 .controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   height: calc(20px * 3 - 1px * 2);
 }
 
 .button {
   border: 1px solid #000;
   border-radius: 3px;
-  flex: 1
+  width: calc(20px * 3);
 }
 
 .next-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: calc(20px * 4 - 1px * 2);
   position: absolute;
-  left: calc((20px + 2px) * 13);
+  right: calc((20px + 2px) * 13);
   top: 0;
 }
 
 .score-board {
   position: absolute;
-  right: calc((20px + 2px) * 13);
+  left: calc((20px + 2px) * 13);
   top: 0;
   width: calc((20px + 2px) * 4);
   box-sizing: border-box;
