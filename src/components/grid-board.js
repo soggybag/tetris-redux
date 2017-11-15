@@ -13,8 +13,6 @@ class GridBoard extends Component {
     const block = getShape(shape)[rotation]
     const blockColor = shape
 
-    console.log(block);
-
     return this.props.grid.map((rowArray, row) => {
       return rowArray.map((square, col) => {
         const blockX = col - x
@@ -22,12 +20,10 @@ class GridBoard extends Component {
         let color = 0
 
         if (blockX >= 0 && blockX < 4 && blockY >= 0 && blockY < 4) {
-          console.log(block[blockX][blockY]);
           color = block[blockX][blockY] === 0 ? 0 : blockColor
         }
-
         const k = row * 12 + col;
-        return <GridSquare key={k} square={square} color={color}>{color}</GridSquare>
+        return <GridSquare key={k} square={square} color={color}>{square}</GridSquare>
       })
     })
 

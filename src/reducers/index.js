@@ -10,8 +10,8 @@ const reducers = combineReducers({
   level: levelReducer,
   lines: linesReducer,
   score: scoreReducer,
-  grid: gridReducer,
   currentBlock: currentBlockReducer,
+  grid: gridReducer,
   nextBlock: nextBlockReducer
 })
 

@@ -10,13 +10,11 @@ class NextBlock extends Component {
   makeGrid() {
     const { shape, rotation } = this.props.nextBlock
     const block = getShape(shape)[rotation]
-    const color = getColor(shape)
-    console.log(color, shape);
     const box = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
 
     return box.map((rowArray, row) => {
       return rowArray.map((square, col) => {
-        const blockColor = block[row][col] === 0 ? '#fff' : color
+        const blockColor = block[row][col] === 0 ? 0 : shape
         return <GridSquare key={col} color={blockColor} />
       })})
     }

@@ -10,7 +10,7 @@ import Controls from './components/controls'
 import NextBlock from './components/next-block'
 import ScoreBoard from './components/score-board'
 
-const store = createStore(reducers)
+export const store = createStore(reducers)
 
 class App extends Component {
   render() {
