@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { } from '../actions'
+
 class ScoreBoard extends Component {
 
   render() {
@@ -13,8 +15,10 @@ class ScoreBoard extends Component {
         <button>Start</button>
         <div>
           <div>Next block</div>
-          <div>shape: {this.props.nextBlock.shape}</div>
-          <div>rotation: {this.props.nextBlock.rotation}</div>
+          <div>shape: {this.props.shape}</div>
+          <div>rotation: {this.props.rotation}</div>
+          <div>- Block -</div>
+          <div>x: {this.props.x} y: {this.props.y}</div>
         </div>
       </div>
     )
@@ -23,7 +27,11 @@ class ScoreBoard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    nextBlock: state.nextBlock
+    nextBlock: state.nextBlock,
+    shape: state.grid.shape,
+    rotation: state.grid.rotation,
+    x: state.grid.x,
+    y: state.grid.y
   }
 }
 
