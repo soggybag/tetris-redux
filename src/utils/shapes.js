@@ -182,3 +182,18 @@ export const gridDefault = () => {
     [1,1,1,1,1,1,1,1,1,1,1,1]
   ].slice(0)
 }
+
+const defaultShape = () => {
+  return {shape: 2, rotation: 2, x: 5, y: 0}
+}
+
+const defaultState = () => {
+  return {
+    grid: gridDefault(),
+    shape: 1,
+    rotation: 0,
+    x: 5,
+    y: 0,
+    nextShape: 0
+  }
+}
