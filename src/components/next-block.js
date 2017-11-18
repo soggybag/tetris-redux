@@ -8,8 +8,8 @@ import GridSquare from './grid-square'
 class NextBlock extends Component {
 
   makeGrid() {
-    const { shape, rotation } = this.props.nextBlock
-    const block = getShape(shape)[rotation]
+    const { shape } = this.props
+    const block = getShape(shape)[0]
     const box = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
 
     return box.map((rowArray, row) => {
@@ -31,7 +31,7 @@ class NextBlock extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    nextBlock: state.nextBlock
+    shape: state.grid.nextShape
   }
 }
 

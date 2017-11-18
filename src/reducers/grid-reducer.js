@@ -1,20 +1,24 @@
 
 import { SET_NEXT, MOVE_RIGHT, MOVE_LEFT, MOVE_DOWN, ROTATE } from '../actions'
 
-import { random } from '../utils'
-import { shapeCount, canMoveTo, nextRotation, addBlockToGrid, gridDefault, defaultShape, defaultState } from '../utils/shapes'
+import { randomShape } from '../utils/shapes'
+import {
+  shapeCount,
+  canMoveTo,
+  nextRotation,
+  addBlockToGrid,
+  gridDefault,
+  defaultShape,
+  defaultState
+} from '../utils/shapes'
 
-// TODO: Move next block into grid state
-// TODO: Create interval for game clock
-// TODO: Add is running state and actions 
+// TODO: Add is running state and actions
+// TODO: Start and Pause game
 
 const gridReducer = (state = defaultState(), action) => {
-  let { grid, shape, rotation, x, y } = state
+  let { grid, shape, rotation, x, y, nextShape, isRunning } = state
 
   switch(action.type) {
-    case SET_NEXT:
-      return { ...state, shape: random(1, shapeCount), rotation: 0, x: 4, y: 6 }
-
     case ROTATE:
       rotation = nextRotation(state.rotation, state.shape)
       if (canMoveTo(shape, grid, rotation, x, y)) {
@@ -43,13 +47,20 @@ const gridReducer = (state = defaultState(), action) => {
       }
 
       const newGrid = addBlockToGrid(grid, shape, rotation, x, y)
-      const newState = defaultState()
-      newState.grid = newGrid
-      // TODO: Get next block set as current block
-      // TODO: Generate random next block
+      const newState = {
+        grid: newGrid,
+        shape: nextShape,
+        x: 4,
+        y: 0,
+        rotation: 0,
+        nextShape: randomShape()
+      }
+
       // TODO: Check for compete rows
       // TODO: Score points
       // TODO: Check and Set level
+      // TODO: Check canMoveTo if not game over
+
       return newState
 
     default:

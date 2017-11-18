@@ -1,4 +1,4 @@
-
+import { random } from './index'
 export const shapes = [
   // none
   [[[0,0,0,0],
@@ -127,12 +127,12 @@ export const canMoveTo = (shape, grid, r, x, y) => {
   // Loop through all rows and cols of the **shape**
   for (let row = 0; row < currentShape.length; row++) {         // Loop through rows
     for (let col = 0; col < currentShape[row].length; col++) {  // Loop through cols
-      console.log(`row:${row} col:${col} x:${x} y:${y}`);
-      console.log(`Grid: ${currentShape[row][col]}`);
+      // console.log(`row:${row} col:${col} x:${x} y:${y}`);
+      // console.log(`Grid: ${currentShape[row][col]}`);
       if (currentShape[row][col] !== 0) {                      // Look for a 1 here
         const proposedX = col + x                               // x offset on grid
         const proposedY = row + y                               // y offset on grid
-        console.log(`px:${proposedX} py:${proposedY}`)
+        // console.log(`px:${proposedX} py:${proposedY}`)
         const possibleRow = grid[proposedY]                     // Get the row
         if (possibleRow) {                                      // Check row exists
           if (possibleRow[proposedX]) {                         // check the contents
@@ -187,13 +187,18 @@ export const defaultShape = () => {
   return {shape: 2, rotation: 2, x: 5, y: 0}
 }
 
+export const randomShape = () => {
+  return random(1, shapes.length - 1)
+}
+
 export const defaultState = () => {
   return {
     grid: gridDefault(),
-    shape: 1,
+    shape: randomShape(),
     rotation: 0,
     x: 5,
     y: 0,
-    nextShape: 0
+    nextShape: randomShape(),
+    isRunning: true
   }
 }

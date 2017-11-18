@@ -17,10 +17,10 @@ class GridBoard extends Component {
       return rowArray.map((square, col) => {
         const blockX = col - x
         const blockY = row - y
-        let color = 0
+        let color = square
 
         if (blockX >= 0 && blockX < block.length && blockY >= 0 && blockY < block.length) {
-          color = block[blockY][blockX] === 0 ? 0 : blockColor
+          color = block[blockY][blockX] === 0 ? color : blockColor
         }
 
         const k = row * grid[0].length + col;
