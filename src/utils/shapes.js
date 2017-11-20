@@ -132,12 +132,13 @@ export const canMoveTo = (shape, grid, r, x, y) => {
       if (currentShape[row][col] !== 0) {                      // Look for a 1 here
         const proposedX = col + x                               // x offset on grid
         const proposedY = row + y                               // y offset on grid
-        // console.log(`px:${proposedX} py:${proposedY}`)
         const possibleRow = grid[proposedY]                     // Get the row
         if (possibleRow) {                                      // Check row exists
-          if (possibleRow[proposedX]) {                         // check the contents
+          if (possibleRow[proposedX] === undefined || possibleRow[proposedX] !== 0) {                         // check the contents
             return false                                         // something other than 0
           }
+        } else {
+          return false
         }
       }
     }
@@ -147,8 +148,6 @@ export const canMoveTo = (shape, grid, r, x, y) => {
 
 export const addBlockToGrid = (grid, shape, rotation, x, y) => {
   const block = shapes[shape][rotation]
-  console.log(rotation);
-  console.log(block)
   for (let row = 0; row < block.length; row++) {
     for (let col = 0; col < block[row].length; col++) {
       if (block[row][col]) {
@@ -160,27 +159,9 @@ export const addBlockToGrid = (grid, shape, rotation, x, y) => {
 }
 
 export const gridDefault = () => {
-  return [
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1]
-  ].slice(0)
+  const rows = 18
+  const cols = 10
+  return Array(rows).fill(Array(cols).fill(0))
 }
 
 export const defaultShape = () => {

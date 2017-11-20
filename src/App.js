@@ -25,10 +25,12 @@ class App extends Component {
       <Provider store={store}>
         <div className="app">
           <h1>Turbo Umbrella</h1>
-          <GridBoard />
-          <Controls />
-          <NextBlock />
-          <ScoreBoard />
+          <div className="game-container">
+            <GridBoard />
+            <Controls />
+            <NextBlock />
+            <ScoreBoard />
+          </div>
         </div>
       </Provider>
     );
