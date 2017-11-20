@@ -148,6 +148,7 @@ export const canMoveTo = (shape, grid, r, x, y) => {
 
 export const addBlockToGrid = (grid, shape, rotation, x, y) => {
   const block = shapes[shape][rotation]
+  console.log(grid, shape, rotation, x, y);
   for (let row = 0; row < block.length; row++) {
     for (let col = 0; col < block[row].length; col++) {
       if (block[row][col]) {
@@ -161,7 +162,16 @@ export const addBlockToGrid = (grid, shape, rotation, x, y) => {
 export const gridDefault = () => {
   const rows = 18
   const cols = 10
-  return Array(rows).fill(Array(cols).fill(0))
+  const array = []
+  for (let row = 0; row < rows; row++) {
+    array.push([])
+    for (let col = 0; col < cols; col++) {
+      array[row].push(0)
+    }
+  }
+  return array
+  // Why doesn't this work? 
+  // return Array(rows).fill(Array(cols).fill(0))
 }
 
 export const defaultShape = () => {
