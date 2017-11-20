@@ -1,7 +1,7 @@
 
 import { SET_NEXT, MOVE_RIGHT, MOVE_LEFT, MOVE_DOWN, ROTATE } from '../actions'
 
-import { randomShape } from '../utils/shapes'
+import { randomShape, checkRows } from '../utils/shapes'
 import {
   shapeCount,
   canMoveTo,
@@ -60,6 +60,9 @@ const gridReducer = (state = defaultState(), action) => {
       // TODO: Score points
       // TODO: Check and Set level
       // TODO: Check canMoveTo if not game over
+
+      // Checks 
+      console.log(checkRows(newGrid))
 
       return newState
 

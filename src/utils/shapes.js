@@ -170,7 +170,7 @@ export const gridDefault = () => {
     }
   }
   return array
-  // Why doesn't this work? 
+  // Why doesn't this work?
   // return Array(rows).fill(Array(cols).fill(0))
 }
 
@@ -192,4 +192,24 @@ export const defaultState = () => {
     nextShape: randomShape(),
     isRunning: true
   }
+}
+
+export const checkRows = (grid) => {
+  const points = [0, 40, 100, 300, 1200]
+  let completedRows = 0
+  for (let row = 0; row < grid.length; row++) {
+    if (grid[row].indexOf(0) === -1) {
+      completedRows += 1
+      grid.splice(row, 1)
+      grid.unshift(Array(10).fill(0))
+    }
+  }
+
+  // const completedRows = grid.reduce((acc, row, index) => {
+  //   if (row.indexOf(0) === -1) {
+  //     return acc += 1
+  //   }
+  //   return acc
+  // }, 0)
+  return points[completedRows]
 }
