@@ -19,9 +19,6 @@ import {
 import { startTimer, stopTimer } from '../utils/timer'
 import store from '../App'
 
-// TODO: Add is running state and actions
-// TODO: Start and Pause game
-
 const gameReducer = (state = defaultState(), action) => {
   let { grid, shape, rotation, x, y, nextShape, isRunning, score, speed } = state
 
