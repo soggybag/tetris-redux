@@ -25,6 +25,7 @@ class GridBoard extends Component {
 
   update(time) {
     if (!this.props.isRunning) {
+      window.requestAnimationFrame(this.update.bind(this))
       return
     }
 
@@ -37,6 +38,7 @@ class GridBoard extends Component {
     if (this.progressTime > this.props.speed) {
       this.props.moveDown()
       this.progressTime = 0
+
     }
 
     this.lastUpdateTime = time
@@ -65,8 +67,12 @@ class GridBoard extends Component {
   }
 
   render () {
+
+    const { isRunning } = this.props
+    const enabled = isRunning ? "" : "disabled"
+
     return (
-      <div className="grid-board">
+      <div className={`grid-board ${enabled}`}>
         {this.makeGrid()}
       </div>
     )

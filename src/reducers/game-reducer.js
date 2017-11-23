@@ -54,15 +54,12 @@ const gameReducer = (state = defaultState(), action) => {
       }
 
       const newGrid = addBlockToGrid(grid, shape, rotation, x, y)
-      const newState = {
-        grid: newGrid,
-        shape: nextShape,
-        x: 4,
-        y: 0,
-        rotation: 0,
-        nextShape: randomShape(),
-        score
-      }
+      const newState = defaultState()
+      newState.grid = newGrid
+      newState.shape = nextShape
+      newState.nextShape = randomShape()
+      newState.score = score
+      newState.isRunning = isRunning
 
       // TODO: Check canMoveTo if not game over
       if (!canMoveTo(nextShape, newGrid, 0, 4, 0)) {
