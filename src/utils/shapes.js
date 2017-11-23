@@ -148,7 +148,6 @@ export const canMoveTo = (shape, grid, r, x, y) => {
 
 export const addBlockToGrid = (grid, shape, rotation, x, y) => {
   const block = shapes[shape][rotation]
-  console.log(grid, shape, rotation, x, y);
   for (let row = 0; row < block.length; row++) {
     for (let col = 0; col < block[row].length; col++) {
       if (block[row][col]) {
@@ -190,7 +189,9 @@ export const defaultState = () => {
     x: 5,
     y: 0,
     nextShape: randomShape(),
-    isRunning: true
+    isRunning: true,
+    score: 0,
+    speed: 1000
   }
 }
 
@@ -204,12 +205,5 @@ export const checkRows = (grid) => {
       grid.unshift(Array(10).fill(0))
     }
   }
-
-  // const completedRows = grid.reduce((acc, row, index) => {
-  //   if (row.indexOf(0) === -1) {
-  //     return acc += 1
-  //   }
-  //   return acc
-  // }, 0)
   return points[completedRows]
 }

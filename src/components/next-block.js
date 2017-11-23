@@ -31,7 +31,7 @@ class NextBlock extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    shape: state.grid.nextShape
+    shape: state.game.nextShape
   }
 }
 

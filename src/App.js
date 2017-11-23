@@ -15,10 +15,6 @@ import ScoreBoard from './components/score-board'
 
 export const store = createStore(reducers)
 
-startTimer(() => {
-  store.dispatch(moveDown())
-})
-
 class App extends Component {
   render() {
     return (

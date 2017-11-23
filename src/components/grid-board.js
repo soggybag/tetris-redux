@@ -3,10 +3,45 @@ import { connect } from 'react-redux'
 
 import { getShape } from '../utils/shapes'
 import { getColor } from '../utils/colors'
+import { moveDown } from '../actions/'
 
 import GridSquare from './grid-square'
 
 class GridBoard extends Component {
+  constructor(props) {
+    super(props)
+
+    this.lastUpdateTime = 0
+    this.progressTime = 0
+  }
+
+  componentDidMount() {
+    window.requestAnimationFrame(this.update.bind(this))
+  }
+
+  componentWillUnmount() {
+    //
+  }
+
+  update(time) {
+    if (!this.props.isRunning) {
+      return
+    }
+
+    if (!this.lastUpdateTime) {
+      this.lastUpdateTime = time
+    }
+
+    const deltaTime = time - this.lastUpdateTime
+    this.progressTime += deltaTime
+    if (this.progressTime > this.props.speed) {
+      this.props.moveDown()
+      this.progressTime = 0
+    }
+
+    this.lastUpdateTime = time
+    window.requestAnimationFrame(this.update.bind(this))
+  }
 
   makeGrid() {
     const { grid, shape, rotation, x, y } = this.props
@@ -40,17 +75,19 @@ class GridBoard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    grid: state.grid.grid,
-    shape: state.grid.shape,
-    rotation: state.grid.rotation,
-    x: state.grid.x,
-    y: state.grid.y
+    grid: state.game.grid,
+    shape: state.game.shape,
+    rotation: state.game.rotation,
+    x: state.game.x,
+    y: state.game.y,
+    speed: state.game.speed,
+    isRunning: state.game.isRunning
   }
 }
 
 const mapDispatchToProps = () => {
   return {
-
+    moveDown
   }
 }
 

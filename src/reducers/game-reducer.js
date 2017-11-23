@@ -1,5 +1,10 @@
 
-import { SET_NEXT, MOVE_RIGHT, MOVE_LEFT, MOVE_DOWN, ROTATE } from '../actions'
+import {
+  SET_NEXT,
+  MOVE_RIGHT, MOVE_LEFT, MOVE_DOWN, ROTATE,
+  PAUSE, RESUME,
+  moveDown
+} from '../actions'
 
 import { randomShape, checkRows } from '../utils/shapes'
 import {
@@ -11,12 +16,14 @@ import {
   defaultShape,
   defaultState
 } from '../utils/shapes'
+import { startTimer, stopTimer } from '../utils/timer'
+import store from '../App'
 
 // TODO: Add is running state and actions
 // TODO: Start and Pause game
 
-const gridReducer = (state = defaultState(), action) => {
-  let { grid, shape, rotation, x, y, nextShape, isRunning } = state
+const gameReducer = (state = defaultState(), action) => {
+  let { grid, shape, rotation, x, y, nextShape, isRunning, score, speed } = state
 
   switch(action.type) {
     case ROTATE:
@@ -53,22 +60,35 @@ const gridReducer = (state = defaultState(), action) => {
         x: 4,
         y: 0,
         rotation: 0,
-        nextShape: randomShape()
+        nextShape: randomShape(),
+        score
       }
 
-      // TODO: Check for compete rows
-      // TODO: Score points
-      // TODO: Check and Set level
       // TODO: Check canMoveTo if not game over
+      if (!canMoveTo(nextShape, newGrid, 0, 4, 0)) {
+        // Game Over
+        newState.shape = 0
+        return
+      }
 
-      // Checks 
-      console.log(checkRows(newGrid))
+      // TODO: Check and Set level
+      // Score increases decrease interval
+
+      newState.score = score + checkRows(newGrid)
 
       return newState
+
+    case RESUME:
+      console.log("Pause");
+      return { ...state, isRunning: true }
+
+    case PAUSE:
+      console.log("Resume");
+      return { ...state, isRunning: false }
 
     default:
       return state
   }
 }
 
-export default gridReducer
+export default gameReducer
