@@ -43,6 +43,7 @@ to the grid from above.
 - Drop button sends block all the way to the bottom.
 - Holding down on button applies the action each
 frame update.
+- Shadow below block shows where it will land.
 - Game should speed up over time with rows completed
 or as score increases.
 - Levels, as levels are cleared the game should.

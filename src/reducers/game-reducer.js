@@ -62,7 +62,7 @@ const gameReducer = (state = defaultState(), action) => {
       if (!canMoveTo(nextShape, newGrid, 0, 4, 0)) {
         // Game Over
         newState.shape = 0
-        return
+        return // state
       }
 
       // TODO: Check and Set level
