@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { pause, resume } from '../actions'
+import { pause, resume, restart } from '../actions'
+
+// Draws the score, stats, and pause/resume button
+// TODO: Implement levels
+// TODO: Style the score board...
+// TODO: Remove block position
 
 class ScoreBoard extends Component {
 
@@ -13,8 +18,13 @@ class ScoreBoard extends Component {
         <div>Level: 000</div>
 
         <button onClick={(e) => {
+          if (this.props.gameOver) { return }
           this.props.isRunning ? this.props.pause() : this.props.resume()
         }}>{this.props.isRunning ? "Pause" : "Resume"}</button>
+
+        <button onClick={(e) => {
+          this.props.restart()
+        }}>Restart</button>
 
         <div>
           <div>Next block</div>
@@ -28,6 +38,8 @@ class ScoreBoard extends Component {
   }
 }
 
+// Set up Redux
+
 const mapStateToProps = (state) => {
   return {
     shape: state.game.shape,
@@ -35,14 +47,16 @@ const mapStateToProps = (state) => {
     x: state.game.x,
     y: state.game.y,
     score: state.game.score,
-    isRunning: state.game.isRunning
+    isRunning: state.game.isRunning,
+    gameOver: state.gameOver
   }
 }
 
 const mapDispatchToProps = () => {
   return {
     pause,
-    resume
+    resume,
+    restart
   }
 }
 

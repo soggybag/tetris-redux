@@ -2,11 +2,11 @@
 import {
   SET_NEXT,
   MOVE_RIGHT, MOVE_LEFT, MOVE_DOWN, ROTATE,
-  PAUSE, RESUME,
-  moveDown
+  PAUSE, RESUME, RESTART, GAME_OVER
 } from '../actions'
 
 import { randomShape, checkRows } from '../utils/shapes'
+
 import {
   shapeCount,
   canMoveTo,
@@ -16,6 +16,7 @@ import {
   defaultShape,
   defaultState
 } from '../utils/shapes'
+
 import { startTimer, stopTimer } from '../utils/timer'
 import store from '../App'
 
@@ -61,8 +62,9 @@ const gameReducer = (state = defaultState(), action) => {
       // TODO: Check canMoveTo if not game over
       if (!canMoveTo(nextShape, newGrid, 0, 4, 0)) {
         // Game Over
+        console.log("Game Should be over...")
         newState.shape = 0
-        return // state
+        return { ...state, gameOver: true }
       }
 
       // TODO: Check and Set level
@@ -79,6 +81,14 @@ const gameReducer = (state = defaultState(), action) => {
     case PAUSE:
       console.log("Resume");
       return { ...state, isRunning: false }
+
+    case GAME_OVER:
+      console.log("Game Over")
+      return { ...state, isRunning: false}
+
+    case RESTART:
+      console.log("Restart Game")
+      return defaultState()
 
     default:
       return state

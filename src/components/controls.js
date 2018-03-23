@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { moveLeft, moveRight, rotate, moveDown } from '../actions'
 
+// Displays the movement controls at the below the game board
+
 class Controls extends Component {
 
   render() {
     const { isRunning } = this.props
-    const enabled = this.props.isRunning ? "" : "disabled"
+    const enabledClass = this.props.isRunning ? "" : "disabled"
 
     return (
-      <div className={`controls ${enabled}`}>
+      <div className={`controls ${enabledClass}`}>
         <button className="button"
           onMouseDown={(e) => {
             if (!isRunning) { return }

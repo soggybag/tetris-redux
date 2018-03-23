@@ -7,6 +7,9 @@ import { moveDown } from '../actions/'
 
 import GridSquare from './grid-square'
 
+// Display the main game board
+// Also handles game updates
+
 class GridBoard extends Component {
   constructor(props) {
     super(props)
@@ -23,9 +26,11 @@ class GridBoard extends Component {
     //
   }
 
+  // Handle game updates
   update(time) {
+    window.requestAnimationFrame(this.update.bind(this))
     if (!this.props.isRunning) {
-      window.requestAnimationFrame(this.update.bind(this))
+
       return
     }
 
@@ -38,11 +43,9 @@ class GridBoard extends Component {
     if (this.progressTime > this.props.speed) {
       this.props.moveDown()
       this.progressTime = 0
-
     }
 
     this.lastUpdateTime = time
-    window.requestAnimationFrame(this.update.bind(this))
   }
 
   makeGrid() {
@@ -56,28 +59,35 @@ class GridBoard extends Component {
         const blockY = row - y
         let color = square
 
+        // Map current falling block to grid
         if (blockX >= 0 && blockX < block.length && blockY >= 0 && blockY < block.length) {
           color = block[blockY][blockX] === 0 ? color : blockColor
         }
-
+        // Generate a unique key for every block
         const k = row * grid[0].length + col;
-        return <GridSquare key={k} square={square} color={color}>{square}</GridSquare>
+        // Generate a grid square
+        return <GridSquare
+                key={k}
+                square={square}
+                color={color}>{square}</GridSquare>
       })
     })
   }
 
   render () {
-
     const { isRunning } = this.props
-    const enabled = isRunning ? "" : "disabled"
+    // Generate a state class
+    const enabledClass = isRunning ? "" : "disabled"
 
     return (
-      <div className={`grid-board ${enabled}`}>
+      <div className={`grid-board ${enabledClass}`}>
         {this.makeGrid()}
       </div>
     )
   }
 }
+
+// Setup Redux
 
 const mapStateToProps = (state) => {
   return {

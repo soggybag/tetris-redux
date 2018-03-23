@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { getColor } from '../utils/colors'
 
+// Represents a block with a color
+
 class GridSquare extends Component {
 
   render () {

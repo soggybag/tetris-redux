@@ -191,7 +191,8 @@ export const defaultState = () => {
     nextShape: randomShape(),
     isRunning: true,
     score: 0,
-    speed: 1000
+    speed: 1000,
+    gameOver: false
   }
 }
 

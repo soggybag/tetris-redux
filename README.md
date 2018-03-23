@@ -29,7 +29,12 @@ So far this is a work in progress. As is most of the
 features work. That said there are still things that
 need to be taken care of.
 
-- Game over is still not implemented!
+- Game Over State
+  - Needs to display a game over message
+  - Restart button needs to display countdown before starting game
+- CSS improvements  
+  - Use CSS grid for main layout.
+  - Mobile friendly media queries
 - Design improvements
   - Blocks could use a beveled edge like the original
   arcade version.
