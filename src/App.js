@@ -20,8 +20,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="app">
-          <h1>Turbo Umbrella</h1>
           <div className="game-container">
+            <h1 class="game-title">Turbo Umbrella</h1>
             <GridBoard />
             <Controls />
             <NextBlock />

@@ -46,11 +46,14 @@ const gameReducer = (state = defaultState(), action) => {
       return state
 
     case MOVE_DOWN:
+      // Get the next potential Y position
       const maybeY = y + 1
+      // Check if the current block can move here
       if (canMoveTo(shape, grid, rotation, x, maybeY)) {
+          // If so move
           return { ...state, y: maybeY }
       }
-
+      // If not place the block
       const newGrid = addBlockToGrid(grid, shape, rotation, x, y)
       const newState = defaultState()
       newState.grid = newGrid

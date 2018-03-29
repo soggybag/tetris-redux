@@ -23,21 +23,34 @@ in 2006. I found this and thought I'd make an updated
 version. I used Frank's game as a starting point for this
 version.
 
+### Expanding on the game
+
+Adding new block shapes is interesting. I added a "C", "+", and a
+3x3 with a block in each corner. These make the game more difficult.
+Which goes along way to explaining where the original shapes came from.
+
+These new shapes might work better on a larger grid. They may also be
+good for making the game more difficult over time.
+
+Including a "bomb" type brick that shows up on occasion and destroys
+blocks it comes in contact with could be fun. 
+
 ### TODOs
 
 So far this is a work in progress. As is most of the
 features work. That said there are still things that
 need to be taken care of.
 
+- Add new Game blocks
 - Game Over State
   - Needs to display a game over message
   - Restart button needs to display countdown before starting game
 - CSS improvements  
-  - Use CSS grid for main layout.
+  - ~~Use CSS grid for main layout~~
   - Mobile friendly media queries
 - Design improvements
-  - Blocks could use a beveled edge like the original
-  arcade version.
+  - ~~Blocks could use a beveled edge like the original
+  arcade version~~
   - Background and general color improvements.
   - Better typography
 - Scoring could use improvements.
@@ -45,10 +58,10 @@ need to be taken care of.
 - Blocks should start at the very top or move on
 to the grid from above.
 - keyboard Controls
-- Drop button sends block all the way to the bottom.
+- Drop button sends block all the way to the bottom (maybe this should be space-bar with down arrow moving blocks down 1 space?)
 - Holding down on button applies the action each
-frame update.
-- Shadow below block shows where it will land.
+frame update
+- Shadow below block shows where it will land
 - Game should speed up over time with rows completed
 or as score increases.
 - Levels, as levels are cleared the game should.
