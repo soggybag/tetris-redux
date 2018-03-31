@@ -1,4 +1,6 @@
 import { random } from './index'
+
+// Define block shapes and their rotations as arrays.
 export const shapes = [
   // none
   [[[0,0,0,0],
@@ -117,7 +119,7 @@ export const shapes = [
       [1,1,1,0],
       [0,1,0,0],
       [0,0,0,0]]],
-      
+
     // C
       [[[1,1,0,0],
         [1,0,0,0],
@@ -141,21 +143,29 @@ export const shapes = [
 
 ]
 
+// Export the number of shapes
 export const shapeCount = shapes.length
+
+// Returns the shape at index
 export const getShape = (index) => {
   return shapes[index]
 }
 
+// Returns the next rotation for a shape
 export const nextRotation = (rotation, shape) => {
   return (rotation + 1) % shapes[shape].length
 }
 
+// Holds the starting position for any shape.
+// TODO: Refactor this shapes need to move on from the top
 export const startAt = [0, -1, -1, -1, 0, -1, -1, 0]
 
+// Returns the start y for a shape. TODO: See above
 export const getStartY = (index) => {
   return startAt[index]
 }
 
+// Check if a proposed move is possible.
 export const canMoveTo = (shape, grid, r, x, y) => {
   const currentShape = shapes[shape][r]
   // Loop through all rows and cols of the **shape**
@@ -180,6 +190,7 @@ export const canMoveTo = (shape, grid, r, x, y) => {
   return true
 }
 
+// Adds current shape to grid
 export const addBlockToGrid = (grid, shape, rotation, x, y) => {
   const block = shapes[shape][rotation]
   for (let row = 0; row < block.length; row++) {
@@ -192,6 +203,7 @@ export const addBlockToGrid = (grid, shape, rotation, x, y) => {
   return grid.slice(0)
 }
 
+// Returns the default grid
 export const gridDefault = () => {
   const rows = 18
   const cols = 10
@@ -207,20 +219,24 @@ export const gridDefault = () => {
   // return Array(rows).fill(Array(cols).fill(0))
 }
 
+// Returns the default shape. TODO: is this in use?
 export const defaultShape = () => {
-  return {shape: 2, rotation: 2, x: 5, y: 0}
+  return { shape: 2, rotation: 2, x: 5, y: -4 }
 }
 
+// Return a random shape
 export const randomShape = () => {
   return random(1, shapes.length - 1)
 }
 
+// Return the default state for the game
 export const defaultState = () => {
   return {
     grid: gridDefault(),
     shape: randomShape(),
     rotation: 0,
     x: 5,
+    // TODO: Use -y to move shapes on from above the top
     y: 0,
     nextShape: randomShape(),
     isRunning: true,
@@ -230,7 +246,7 @@ export const defaultState = () => {
   }
 }
 
-//
+// Checks for completed rows and scores points
 export const checkRows = (grid) => {
   const points = [0, 40, 100, 300, 1200]
   let completedRows = 0

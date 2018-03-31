@@ -87,7 +87,7 @@ const gameReducer = (state = defaultState(), action) => {
 
     case GAME_OVER:
       console.log("Game Over")
-      return { ...state, isRunning: false}
+      return { ...state, isRunning: false }
 
     case RESTART:
       console.log("Restart Game")

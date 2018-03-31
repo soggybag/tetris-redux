@@ -91,6 +91,8 @@ body {
 }
 
 .button {
+  --radius: 0px;
+
   padding: 0;
   width: calc(var(--tile-size) * 10 / 4);
 
@@ -101,7 +103,8 @@ body {
   border-right-color: var(--button-color-r);
   border-bottom-color: var(--button-color-b);
 
-  border-radius: 0;
+  border-radius: var(--radius);
+
 }
 
 .next-block {
