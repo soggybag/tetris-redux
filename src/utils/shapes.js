@@ -166,6 +166,7 @@ export const getStartY = (index) => {
 }
 
 // Check if a proposed move is possible.
+// TODO: Needs to allow blocks above the grid
 export const canMoveTo = (shape, grid, r, x, y) => {
   const currentShape = shapes[shape][r]
   // Loop through all rows and cols of the **shape**
@@ -176,6 +177,9 @@ export const canMoveTo = (shape, grid, r, x, y) => {
       if (currentShape[row][col] !== 0) {                      // Look for a 1 here
         const proposedX = col + x                               // x offset on grid
         const proposedY = row + y                               // y offset on grid
+        if (proposedY < 0) {
+          continue
+        }
         const possibleRow = grid[proposedY]                     // Get the row
         if (possibleRow) {                                      // Check row exists
           if (possibleRow[proposedX] === undefined || possibleRow[proposedX] !== 0) {                         // check the contents
@@ -190,7 +194,7 @@ export const canMoveTo = (shape, grid, r, x, y) => {
   return true
 }
 
-// Adds current shape to grid
+// Adds current shape to grid ... ???
 export const addBlockToGrid = (grid, shape, rotation, x, y) => {
   const block = shapes[shape][rotation]
   for (let row = 0; row < block.length; row++) {
@@ -237,7 +241,7 @@ export const defaultState = () => {
     rotation: 0,
     x: 5,
     // TODO: Use -y to move shapes on from above the top
-    y: 0,
+    y: -4,
     nextShape: randomShape(),
     isRunning: true,
     score: 0,

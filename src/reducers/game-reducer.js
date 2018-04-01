@@ -55,6 +55,7 @@ const gameReducer = (state = defaultState(), action) => {
       }
       // If not place the block
       const newGrid = addBlockToGrid(grid, shape, rotation, x, y)
+      // reset somethings to start a new shape/block
       const newState = defaultState()
       newState.grid = newGrid
       newState.shape = nextShape
